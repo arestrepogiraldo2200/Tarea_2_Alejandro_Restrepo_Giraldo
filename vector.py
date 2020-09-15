@@ -60,14 +60,14 @@ class VectorCartesiano:
       # Componentes esféricas
       r = self.magnitud
       # Ángulo polar
-      if self.x == 0:
-         th = np.pi/2
-      else:
-         th = np.arctan(self.y/self.x)
+      th = np.arccos(self.z/self.magnitud)
       # Ángulo azimutal
-      ph = np.arccos(self.z/self.magnitud)
+      if self.x == 0:
+         ph = np.pi/2
+      else:
+         ph = np.arctan(self.y/self.x)
       
-      # Componentes del vector en coordenadas esféricas. Calculadas como el producto punto entre el vector y el unitario correspondiente 
+      # Componentes del vector en coordenadas esféricas. Calculadas como el producto punto entre el vector y el unitario correspondiente. 
       # vector*u_r
       Ar = np.sin(th)*np.cos(ph)*self.x + np.sin(th)*np.sin(ph)*self.y + np.cos(th)*self.z
       # vector*u_th
@@ -76,6 +76,7 @@ class VectorCartesiano:
       Aph = -np.sin(ph)*self.x + np.cos(th)*self.y
 
       print("El vector en coordenadas esféricas es %f r + %f θ + %f φ "%(Ar,Ath,Aph))
+      print("Cuyas coordenadas son r = %f, θ = %f y φ = %f \n"%(r,th,ph))
       
    # Impresión de vectores
    def Print(self):
